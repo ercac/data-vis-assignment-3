@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Papa from 'papaparse';
+import Child1 from './Child1';
+import Child2 from './Child2';
 import './App.css';
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('/tips.csv')
+      .then(response => response.text())
+      .then(csv => {
+        const parsedData = Papa.parse(csv, { header: true, dynamicTyping: true }).data;
+        setData(parsedData);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Child1 data={data} />
+      <Child2 data={data} />
     </div>
   );
 }
