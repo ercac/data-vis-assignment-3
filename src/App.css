@@ -1,15 +1,14 @@
-.App {
-  text-align: center;
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 50px;
 }
 
-h2 {
-  margin: 20px 0;
-}
+.child1_svg, .child2_svg {
+  width: 500px;
+  height: 300px;
+  padding: 50px;
 
-div {
-  display: inline-block;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
